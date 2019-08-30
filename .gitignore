@@ -1,0 +1,5 @@
+knsf_module/__pycache__/*
+knsf_module/db/*
+knsf_module/fcm_message/*
+
+*.KNSF
