@@ -70,6 +70,28 @@ KNSF_PROJECT_BANNER += (', ' + KNSF_CURRENT_SYS + '\n\tCopyright (C) 2019 SukJoo
 
 # Whether to enable KENS service
 KENS_ENABLE = True
+# KNSF_DB_EXIST = True
+KNSF_DB_INIT_HAKSA = False
+KNSF_DB_INIT_JANGHAK = False
+KNSF_DB_INIT_CHANGUP = False
+KNSF_DB_INIT_GUUKJAE = False
+KNSF_DB_INIT_HAKSAENG = False
+KNSF_DB_INIT_SANHAK = False
+KNSF_DB_INIT_ILBAN = False
+
+KNSF_DB_INIT_KENS = False
+
+KNSF_DB_FLAG_L = [
+    KNSF_DB_INIT_HAKSA,
+    KNSF_DB_INIT_JANGHAK,
+    KNSF_DB_INIT_CHANGUP,
+    KNSF_DB_INIT_GUUKJAE,
+    KNSF_DB_INIT_HAKSAENG,
+    KNSF_DB_INIT_SANHAK,
+    KNSF_DB_INIT_ILBAN
+    ]
+
+
 
 # Using previous project names.
 KNSF_EX_KNS_HAKSA = KNSF_DB_DIR + 'DB_HAKSA.KNSF'
@@ -108,6 +130,7 @@ if not(os.path.isfile(KNSF_EX_FCM_SERVER_KEY)):
 if not(os.path.isfile(KNSF_EX_KENS)):
     with open(KNSF_EX_KENS, "w", encoding="utf-8") as db_file:
         db_file.write(BLANK_DB_FILE)
+        KNSF_DB_INIT_KENS = True
 
 if not(os.path.isfile(KNSF_EX_FCM_MESSAGE)):
     with open(KNSF_EX_FCM_MESSAGE, "w", encoding="utf-8") as db_file:
@@ -124,11 +147,20 @@ KNSF_EX_KNS_L = [ copy.deepcopy(KNSF_EX_KNS_HAKSA),
                  copy.deepcopy(KNSF_EX_KNS_ILBAN)                
                  ]
 
+# 
+# delete-meant variable
+flag_idx = 0
+
 for FILE in KNSF_EX_KNS_L:
     if os.path.isfile(FILE): pass
     else: 
         with open(FILE, "w", encoding="utf-8") as db_file:
             db_file.write(BLANK_DB_FILE)
+
+            KNSF_DB_FLAG_L[flag_idx] = True
+            flag_idx += 1
+
+del flag_idx
 
 
 

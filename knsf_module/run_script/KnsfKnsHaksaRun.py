@@ -48,16 +48,24 @@ old_knsf_container = db_manager.readDbService()
 # Comparing process
 updated_list = KnsfCompare(old_knsf_container, new_knsf_container)
 
-print(updated_list)
+# print(updated_list)
 
 if len(updated_list) is not 0: # this means something has been updated.
     db_manager.updateDbService(new_knsf_container)
 
-    # and send notification via FCM push
-    knsf_server = KnsfFcmServer(KNSF_EX_FCM_USER, KNSF_EX_FCM_SERVER_KEY)
-    knsf_server.notifyMultipleDevice('학사 공지 업데이트', 
-                                     KnsfMakeMessageBody(updated_list), 
-                                     KNSF_URL_KNS_HAKSA)
+    # If there was no db, then 
+    # sending alarm is not ideal.
+    # This might happen due to update 
+    if KNSF_DB_INIT_HAKSA is True:
+        pass
+
+    else:
+        # 
+        # and send notification via FCM push
+        knsf_server = KnsfFcmServer(KNSF_EX_FCM_USER, KNSF_EX_FCM_SERVER_KEY)
+        knsf_server.notifyMultipleDevice('학사 공지 업데이트', 
+                                         KnsfMakeMessageBody(updated_list), 
+                                         KNSF_URL_KNS_HAKSA)
 
 else:
     pass

@@ -202,7 +202,6 @@ def KnsfMakeMessageBody(updated_list):
         message_body += title
         message_body += '\n'
 
-    print(message_body)
     return message_body
 
 
