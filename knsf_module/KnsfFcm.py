@@ -193,6 +193,21 @@ class KnsfFcmServer(KnsfFcm):
 
 
 
+# Simple function
+def KnsfMakeMessageBody(updated_list):
+
+    message_body = ''
+
+    for title in updated_list:
+        message_body += title
+        message_body += '\n'
+
+    print(message_body)
+    return message_body
+
+
+
+
 #
 # Test script.
 if __name__ == '__main__':

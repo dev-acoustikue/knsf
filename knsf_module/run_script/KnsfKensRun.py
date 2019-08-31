@@ -23,9 +23,9 @@ sys.path.append(
 # Every recipe ready?
 from KnsfConfig import *
 from KnsfContainer import *
-from KnsfDbManager1 import KnsfKnsDbManagerType1
+from KnsfDbManager1 import KnsfKensDbManager
 from KnsfFcm import *
-from KnsfParserCaller import KnsfParseKnsHaksa
+from KnsfParserCaller import KnsfParseKens
 from KnsfCompare import KnsfCompare
 # Rest? maybe later.
 # 
@@ -39,10 +39,10 @@ print(KNSF_PROJECT_BANNER)
 # so this is how we do it.
 # 
 # first, read database
-db_manager = KnsfKnsDbManagerType1(KNSF_EX_KNS_HAKSA)
+db_manager = KnsfKensDbManager(KNSF_EX_KENS)
 
 # parse necessary information
-new_knsf_container = KnsfParseKnsHaksa() 
+new_knsf_container = KnsfParseKens() 
 old_knsf_container = db_manager.readDbService()
 
 # Comparing process
@@ -55,14 +55,15 @@ if len(updated_list) is not 0: # this means something has been updated.
 
     # and send notification via FCM push
     knsf_server = KnsfFcmServer(KNSF_EX_FCM_USER, KNSF_EX_FCM_SERVER_KEY)
-    knsf_server.notifyMultipleDevice('학사 공지 업데이트', 
+    knsf_server.notifyMultipleDevice('전기전자공학부 공지 업데이트', 
                                      KnsfMakeMessageBody(updated_list), 
-                                     KNSF_URL_KNS_HAKSA)
+                                     'https://ee.konkuk.ac.kr/')
 
 else:
     pass
 
 # done script
+
 
 
 

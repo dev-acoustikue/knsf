@@ -93,23 +93,25 @@ KNSF_EX_KENS = KNSF_DB_DIR + 'DB_EE.KNSF' # Name of the file which will be expor
 KNSF_EX_FCM_MESSAGE = KNSF_DB_DIR + 'FCM_MESSAGE.KNSF'
 
 
+BLANK_DB_FILE = r'{"type": "", "data": []}'
+
 # Initializing code.
 # If files mentioned above does not exist, make them.
 if not(os.path.isfile(KNSF_EX_FCM_USER)):
-    with open(KNSF_EX_FCM_USER, "w", encoding="utf-8"):
-        pass
+    with open(KNSF_EX_FCM_USER, "w", encoding="utf-8") as db_file:
+        db_file.write(BLANK_DB_FILE)
 
 if not(os.path.isfile(KNSF_EX_FCM_SERVER_KEY)):
-    with open(KNSF_EX_FCM_SERVER_KEY, "w", encoding="utf-8"):
-        pass
+    with open(KNSF_EX_FCM_SERVER_KEY, "w", encoding="utf-8") as db_file:
+        db_file.write(BLANK_DB_FILE)
 
 if not(os.path.isfile(KNSF_EX_KENS)):
-    with open(KNSF_EX_KENS, "w", encoding="utf-8"):
-        pass
+    with open(KNSF_EX_KENS, "w", encoding="utf-8") as db_file:
+        db_file.write(BLANK_DB_FILE)
 
 if not(os.path.isfile(KNSF_EX_FCM_MESSAGE)):
-    with open(KNSF_EX_FCM_MESSAGE, "w", encoding="utf-8"):
-        pass
+    with open(KNSF_EX_FCM_MESSAGE, "w", encoding="utf-8") as db_file:
+        db_file.write(BLANK_DB_FILE)
 
 
 # Exported file lists.
@@ -125,8 +127,8 @@ KNSF_EX_KNS_L = [ copy.deepcopy(KNSF_EX_KNS_HAKSA),
 for FILE in KNSF_EX_KNS_L:
     if os.path.isfile(FILE): pass
     else: 
-        with open(FILE, "w", encoding="utf-8"):
-            pass
+        with open(FILE, "w", encoding="utf-8") as db_file:
+            db_file.write(BLANK_DB_FILE)
 
 
 
