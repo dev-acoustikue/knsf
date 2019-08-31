@@ -71,23 +71,17 @@ And add the script to run. This is an example of running scripts in every 30 min
 
 ```
 # added 19.08.31.
+0/10 * * * * /usr/bin/python3 /home/pi/Desktop/git/knsf/knsf_module/run_script/KnsfKensRun.py > /home/pi/Desktop/knsf_log/knsf-kens-`date +\%Y-\%m-\%d_\%H:\%M`
+0/10 * * * * /usr/bin/python3 /home/pi/Desktop/git/knsf/knsf_module/run_script/KnsfKnsGuukjaeRun.py > /home/pi/Desktop/knsf_log/knsf-kns-guukjae-`date +\%Y-\%m-\%d_\%H:\%M`
+0/10 * * * * /usr/bin/python3 /home/pi/Desktop/git/knsf/knsf_module/run_script/KnsfKnsHaksaengRun.py > /home/pi/Desktop/knsf_log/knsf-kns-haksaeng`date +\%Y-\%m-\%d_\%H:\%M`
+0/10 * * * * /usr/bin/python3 /home/pi/Desktop/git/knsf/knsf_module/run_script/KnsfKnsHaksaRun.py > /home/pi/Desktop/knsf_log/knsf-kns-haksa-`date +\%Y-\%m-\%d_\%H:\%M`
+0/10 * * * * /usr/bin/python3 /home/pi/Desktop/git/knsf/knsf_module/run_script/KnsfKnsIlbanRun.py > /home/pi/Desktop/knsf_log/knsf-kns-ilban-`date +\%Y-\%m-\%d_\%H:\%M`
+0/10 * * * * /usr/bin/python3 /home/pi/Desktop/git/knsf/knsf_module/run_script/KnsfKnsJanghakRun.py > /home/pi/Desktop/knsf_log/knsf-kns-janghak-`date +\%Y-\%m-\%d_\%H:\%M`
 
-0 * * * * /usr/bin/python3 /home/pi/Desktop/git/knsf/knsf_module/run_script/knsfKensRun.py > /home/pi/Desktop/knsf_log/knsf-kens-`date +\%Y-\%m-\%d_\%H:\%M`
-
-0 * * * * /usr/bin/python3 /home/pi/Desktop/git/knsf/knsf_module/run_script/knsfKnsGuukjaeRun.py > /home/pi/Desktop/knsf_log/knsf-kns-guukjae-`date +\%Y-\%m-\%d_\%H:\%M`
-
-0 * * * * /usr/bin/python3 /home/pi/Desktop/git/knsf/knsf_module/run_script/knsfKnsHaksaengRun.py > /home/pi/Desktop/knsf_log/knsf-kns-haksaeng`date +\%Y-\%m-\%d_\%H:\%M`
-
-0 * * * * /usr/bin/python3 /home/pi/Desktop/git/knsf/knsf_module/run_script/knsfKnsHaksaRun.py > /home/pi/Desktop/knsf_log/knsf-kns-haksa-`date +\%Y-\%m-\%d_\%H:\%M`
-
-0 * * * * /usr/bin/python3 /home/pi/Desktop/git/knsf/knsf_module/run_script/knsfKnsIlbanRun.py > /home/pi/Desktop/knsf_log/knsf-kns-ilban-`date +\%Y-\%m-\%d_\%H:\%M`
-
-0 * * * * /usr/bin/python3 /home/pi/Desktop/git/knsf/knsf_module/run_script/knsfKnsJanghakRun.py > /home/pi/Desktop/knsf_log/knsf-kns-janghak-`date +\%Y-\%m-\%d_\%H:\%M`
-
-# delete logs 
 0 5 * * * rm /home/pi/Desktop/knsf_log/*
 
 */20 * * * * /usr/sbin/service cron status | /bin/grep -E 'Active|Memory' > /home/pi/Desktop/knsf_log/cron-`date +\%Y-\%m-\%d_\%H:\%M`
+
 ```
 
 Now run the cron service.
