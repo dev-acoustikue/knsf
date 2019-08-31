@@ -31,8 +31,8 @@ from bs4 import BeautifulSoup # parser
 import copy
 
 # User
-from knsf_module.KnsfConfig import *
-from knsf_module.KnsfContainer import *
+from KnsfConfig import *
+from KnsfContainer import *
 
 # Explanation:
 # html request process is already contained in parser.

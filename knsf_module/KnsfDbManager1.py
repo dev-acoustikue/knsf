@@ -29,7 +29,7 @@ from KnsfConfig import *
 from KnsfContainer import *
 
 # for debugging
-from knsf_module.KnsfParserCaller import *
+from KnsfParserCaller import *
 # functions from KnsfParserCaller returns KnsfContainer type.
 # Thus, use the returned value as DAOs.
 

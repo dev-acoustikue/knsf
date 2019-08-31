@@ -24,7 +24,7 @@
 # a small scale home server.
 # But it will also work on any other linux-based OS.
 
-from knsf_module.KnsfParser import *
+from KnsfParser import *
 
 # ###########
 # Functions
