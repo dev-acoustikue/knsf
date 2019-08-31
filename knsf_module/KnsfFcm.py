@@ -59,7 +59,7 @@ class KnsfFcm:
     def reloadDbDeviceToken(self, db_file_addr):
 
         if os.path.isfile(db_file_addr):
-            with open(db_file_addr, "r") as key_file: # Read file.
+            with open(db_file_addr, "r", encoding="utf-8") as key_file: # Read file.
 
                 list = key_file.readlines() # Read api key
 
@@ -115,7 +115,7 @@ class KnsfFcmServer(KnsfFcm):
     def reloadDbApiKey(self, db_file_addr):
 
         if os.path.isfile(db_file_addr):
-            with open(db_file_addr, "r") as key_file: # Read file.
+            with open(db_file_addr, "r", encoding="utf-8") as key_file: # Read file.
 
                 list = key_file.readlines() # Read api key
 

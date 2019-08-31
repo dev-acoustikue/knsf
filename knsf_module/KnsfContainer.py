@@ -58,6 +58,18 @@ class KnsfContainer:
         self.data_title_list = []
         pass
 
+    # operator overloading
+    def __eq__(self):
+        pass
+
+    def __len__(self):
+        return len(self.data_title_list)
+
+    def __str__(self):
+        return """KnsfContainer(object) info:
+        \tdata_json_list: {data_json_list}
+        \tdata_title_list: {data_title_list}
+        """.format(data_json_list=self.data_json_list, data_title_list=self.data_title_list)
     #def __str__(self):
     #    return 'KnsfContainer {number} held.'.format(number=len(self.title_list))
 

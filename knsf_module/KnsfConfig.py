@@ -96,19 +96,19 @@ KNSF_EX_FCM_MESSAGE = KNSF_DB_DIR + 'FCM_MESSAGE.KNSF'
 # Initializing code.
 # If files mentioned above does not exist, make them.
 if not(os.path.isfile(KNSF_EX_FCM_USER)):
-    with open(KNSF_EX_FCM_USER, "w"):
+    with open(KNSF_EX_FCM_USER, "w", encoding="utf-8"):
         pass
 
 if not(os.path.isfile(KNSF_EX_FCM_SERVER_KEY)):
-    with open(KNSF_EX_FCM_SERVER_KEY, "w"):
+    with open(KNSF_EX_FCM_SERVER_KEY, "w", encoding="utf-8"):
         pass
 
 if not(os.path.isfile(KNSF_EX_KENS)):
-    with open(KNSF_EX_KENS, "w"):
+    with open(KNSF_EX_KENS, "w", encoding="utf-8"):
         pass
 
 if not(os.path.isfile(KNSF_EX_FCM_MESSAGE)):
-    with open(KNSF_EX_FCM_MESSAGE, "w"):
+    with open(KNSF_EX_FCM_MESSAGE, "w", encoding="utf-8"):
         pass
 
 
@@ -125,7 +125,7 @@ KNSF_EX_KNS_L = [ copy.deepcopy(KNSF_EX_KNS_HAKSA),
 for FILE in KNSF_EX_KNS_L:
     if os.path.isfile(FILE): pass
     else: 
-        with open(FILE, "w"):
+        with open(FILE, "w", encoding="utf-8"):
             pass
 
 

@@ -28,6 +28,13 @@
 from KnsfConfig import *
 from KnsfContainer import *
 
+# for debugging
+from knsf_module.KnsfParserCaller import *
+# functions from KnsfParserCaller returns KnsfContainer type.
+# Thus, use the returned value as DAOs.
+
+# Alas!
+
 import json
 from collections import OrderedDict
 
@@ -50,7 +57,7 @@ from collections import OrderedDict
 #            'title': '',
 #            'date': '',
 #            'vis': ''
-#            }
+#            } ... and so on.
 #        ] # will be list.
 #    }
 #
@@ -63,46 +70,107 @@ class KnsfDbManager:
     # 
     # Be careful with class variables
 
-    type = ''
+    # type = ''
+    form = 'json'
+    
+    # reloadDb
+    def __reloadDb(self, file_addr):
+        print('\tDB file reload.')
 
+        # open file!
+        with open(self.file_addr, "r", encoding="utf-8",) as db_file:
+
+            self.db = json.load(db_file) # load
+
+            self.db_type = self.db['type']
+            # self.db_data : Really necessary?
+            self.db_data_list = self.db['data']
+
+            #print('loaded -----------------')
+            #print(self.db_data_list)
+    
+
+    # constructor
     def __init__(self, file_addr):
 
         # Database file address,
         # This info is in KnsfConfig.py
+        self.type = 'Base'
+
         self.file_addr = file_addr
 
-        # open file!
-        with open(self.file_addr, "r") as db_file:
-            
-            # db_data = json.dumps()
+        self.db = None
+        self.db_type = ''
+        self.db_data_list = [] # empty
 
-            if db_data == '': 
-                # Empty data means it was initialized with script.
-                pass
+        # update
+        self.__reloadDb(file_addr)
 
 
 
-            pass
-        
-        pass
+    
+    # Util
+    def getDb(self):
+        return self.db
+
+    def getDbType(self):
+        return self.db_type
+
+    def getDbDataList(self):
+        return self.db_data_list
 
 
+
+    # control db
+    #
+    def updateDbService(self, knsf_container):
+
+        ordered_dict = self.generateDbJson(knsf_container)
+
+        with open(self.file_addr, 'w', encoding="utf-8") as db_file:
+            json.dump(ordered_dict, db_file)
+
+
+    def generateDbJson(self, knsf_container):
+
+        # Here generates json form which will be saved.
+        #
+        ordered_dict = OrderedDict()
+
+        ordered_dict['type'] = knsf_container.type
+        ordered_dict['data'] = knsf_container.data_json_list
+
+        # print(ordered_dict)
+
+        return ordered_dict
+
+
+
+
+
+
+# Hello children!
 # Author: acoustikue
 class KnsfKensDbManager(KnsfDbManager):
 
     # 
     # Be careful with class variables
 
-    def __init__(self):
-
-        super().__init__()
+    def __init__(self, file_addr):
+        super().__init__(file_addr)
 
         # Not that important
         # just for distinguishing attributes.
         self.type = 'KENS'
         
+    # control db
+    def readDbService(self):
+        # this function returns container type
 
-        pass
+        knsf_container = KnsfKensContainer()
+        knsf_container.setDataJsonList(self.db_data_list)
+
+        return knsf_container
 
 
 # Author: acoustikue
@@ -111,13 +179,21 @@ class KnsfKnsDbManagerType1(KnsfDbManager):
     # 
     # Be careful with class variables
 
-    def __init__(self):
-
-        super().__init__()
+    def __init__(self, file_addr):
+        super().__init__(file_addr)
 
         self.type = 'KNS_1'
 
-        pass
+    # control db
+    def readDbService(self):
+        # this function returns container type
+
+        knsf_container = KnsfKnsContainerType1()
+        knsf_container.setDataJsonList(self.db_data_list)
+
+        return knsf_container
+
+
 
 # Author: acoustikue
 class KnsfKnsDbManagerType2(KnsfDbManager):
@@ -125,11 +201,52 @@ class KnsfKnsDbManagerType2(KnsfDbManager):
     # 
     # Be careful with class variables
 
-    def __init__(self):
+    def __init__(self, file_addr):
+        super().__init__(file_addr)
 
-        super().__init__()
+    # control db
+    def readDbService(self):
+        # this function returns container type
 
-        pass
+        knsf_container = KnsfKnsContainerType2()
+        knsf_container.setDataJsonList(self.db_data_list)
+
+        return knsf_container
+
+
+
+
+
+# 
+# main, debug, unit test code
+if __name__ == '__main__':
+
+    print(KNSF_PROJECT_BANNER)
+    print('\tExecuting KnsfDbManager1 script. Running in debug mode.\n')
+    # print('\tExecute KnsfParserCaller script for debug and unit test.')
+
+    knsf_container = KnsfParseKnsHaksa()
+    
+    db_manager_haksa = KnsfKnsDbManagerType1(KNSF_EX_KNS_HAKSA) # sample
+
+    # print(db_manager_haksa.db)
+
+    #print('db:\n\t' + str(db_manager_haksa.db))
+    #print('db_type:\n\t' + str(db_manager_haksa.db_type))
+    #print('db_data:\n\t' + str(db_manager_haksa.db_data_list))
+
+    # db_manager_haksa.generateDbJson(knsf_container)
+
+    # db_manager_haksa.updateDbService(knsf_container)
+
+    # print()
+    # print(knsf_container)
+
+    print(db_manager_haksa.readDbService())
+
+    
+
+
 
 
 
