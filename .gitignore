@@ -3,3 +3,4 @@ knsf_module/db/*
 knsf_module/fcm_message/*
 
 *.KNSF
+knsf.pyproj
