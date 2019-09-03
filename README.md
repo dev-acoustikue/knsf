@@ -8,6 +8,8 @@ KNS scraps the main homepage of Konkuk University, where as KENS scraps Electron
 
 ![demo](./demo.gif)
 
+Specially thanks to Su Chan Kim for testing.
+
 ## Install
 
 This project was designed for environment of home-server, especially Raspberry-Pi. KENS is a simple mini project, thus it does not provide any special functions, since it does not run on 24-hour running server, but runs by cron scheduler. This section explains how to install the project.
